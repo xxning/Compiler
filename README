@@ -1,0 +1,53 @@
+本次实验提交的内容如下:
+
+Makefile		用于快速编译
+bin/mylib.sh		专门用于静态库测试的脚本文件
+   /tran.sh		帮助快速运行的脚本文件
+   /test_for.sh		用于测试新增for语句的脚本文件
+   /Graph.sh		用于厕所test目录下的test1.c,能画出AST
+注:其他功能都可以在mylib.sh所对于的测试文件test/mylib_test.c下修改然后运行
+
+config/lexer.l		flex源文件
+config/parser.y		bison源文件
+doc/Report.odp		实验完成情况的PPT			
+test/mylib_test.c:  	用来测试静态库的C1测试文件
+    /test1.c		用于Graph.sh测试的C1测试文件
+    /test_for.c		用来测试for语句的C1测试文件
+    /test_logic.c	用来测试逻辑运算多的C1测试文件
+    /test_BC.c		用来测试Break和Continue语句的C1测试文件
+    /test_fun.c		用来测试带参数和带return函数的C1测试文件
+    /test_Err.c		用来测试错误检测恢复的C1测试文件
+    /test_complex1.c	
+    /test_complex2.c    两个较为复杂的C1测试文件
+================================================
+其他用到的函数:
+include/
+	global.hh
+	util.hh      # utility marcos
+	tok.hh       # shared statements and definations between yylex and yyparse
+	node.hh      # statement of AST nodes and their constructors
+	
+src/
+	util.cc      # utility functions 
+	node.cc      # define dump function of every AST nodes
+	global.cc    # global variables
+	main.cc      # scans a file with yyarse(), prints reductions, dump AST
+	dumpdot.cc   # describe the struct of every node
+
+src/
+(can be seen after make)
+	lexer.cc     # provides yylex()
+	parser.cc    # provides yyparse()
+	mylib.c	     # a static library function definition of printf
+	codegen.cc   # provides code for LLVM-IR
+********************
+
+运行方式:
+静态库测试:	命令行输入bin/mylib.sh 测试含有printf的静态库
+可以用脚本:命令行输入	bin/tran.sh 一次性处理7个test文件
+也可以自己命令行输入:	bin/C1 test/test1.c用于屏幕输出结果
+			或者bin/C1 test/test1.c > 'test1.ll'
+			以此来测试单个文件,上面是以test1.c为例
+
+			
+
